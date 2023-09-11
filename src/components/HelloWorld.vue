@@ -14,6 +14,14 @@
         <h1 class="display-2 font-weight-bold mb-3">
           {{ title }}
         </h1>
+        <h1 class="display-2 font-weight-bold mb-3">
+          {{ counter }}
+        </h1>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <v-btn @click="increment">Add</v-btn>
       </v-col>
     </v-row>
   </v-container>
@@ -21,13 +29,16 @@
 
 <script>
 import { userCounterStore } from "@/stores/counter";
-import { mapState } from "pinia";
+import { mapState, mapActions } from "pinia";
 export default {
   name: "HelloWorld",
 
   data: () => ({}),
   computed: {
-    ...mapState(userCounterStore, ["title"]),
+    ...mapState(userCounterStore, ["title", "counter"]),
+  },
+  methods: {
+    ...mapActions(userCounterStore, ["increment"]),
   },
 };
 </script>
